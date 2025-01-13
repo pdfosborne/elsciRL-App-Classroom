@@ -16,6 +16,9 @@ from environment.engine import Engine
 # ------ ADAPTERS -----------------------------------------------
 from adapters.default import ClassroomALanguage
 ADAPTERS = {"Classroom_A": ClassroomALanguage}
+# ------ Visual Analysis -----------------------------------------------
+from elsciRL.analysis.combined_variance_visual import combined_variance_analysis_graph as COMBINED_VARIANCE_ANALYSIS_GRAPH
+
 
 def main():
     # ------ Load Configs -----------------------------------------
@@ -67,7 +70,8 @@ def main():
     flat.train()  
     flat.test()
     # --------------------------------------------------------------------
-
+    COMBINED_VARIANCE_ANALYSIS_GRAPH(save_dir, 'TRAINING', show_figures='Yes')
+    COMBINED_VARIANCE_ANALYSIS_GRAPH(save_dir, 'TESTING', show_figures='Yes')
 
 if __name__=='__main__':
     main()
