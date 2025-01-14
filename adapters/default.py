@@ -7,7 +7,7 @@ from torch import Tensor
 from elsciRL.encoders.poss_state_encoded import StateEncoder
 
 
-class default:
+class DefaultAdapter:
     _cached_state_idx: Dict[str, int] = dict()
 
     def __init__(self, setup_info:dict={}) -> None:

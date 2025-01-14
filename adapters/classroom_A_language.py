@@ -9,7 +9,7 @@ from elsciRL.encoders.sentence_transformer_MiniLM_L6v2 import LanguageEncoder
 # Language data 
 from adapters.language_data.student_features import data as StudentFeatures
 
-class ClassroomALanguage:
+class LanguageAdapter:
     _cached_state_idx: Dict[str, int] = dict()
 
     def __init__(self, setup_info:dict={}) -> None:
