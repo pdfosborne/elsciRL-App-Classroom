@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 class Engine:
     def __init__(self, local_setup_info:dict={}) -> None:
@@ -38,8 +39,8 @@ class Engine:
         self.classroom_id = local_setup_info['classroom_id']
         if self.classroom_id == 'A':
             # Size of room
-            self.x_range = [-5,5]
-            self.y_range = [-5,5]
+            self.x_range = [0,5]
+            self.y_range = [0,5]
             # Define Class A
             #------------------------------------------------------------------------------
             # Adding example classroom to initialise environment
@@ -199,10 +200,57 @@ class Engine:
         return self.legal_actions
     
     def render(self, state:any=None):
-        """Render the environment."""
-        # TODO: Design render chart for classroom
-        render = self.Environment.render()
-        return render
+        """Render the environment as a gridworld."""
+        if state is None:
+            return None
+            
+        # Create figure and axis
+        fig, ax = plt.subplots(figsize=(10, 10))
+        
+        # Get current classroom data
+        classroom = self.Classrooms['Classroom_'+str(self.classroom_id)]
+        
+        # Draw grid
+        for x in range(self.x_range[0], self.x_range[1]):
+            for y in range(self.y_range[0], self.y_range[1]):
+                ax.add_patch(plt.Rectangle((x, y), 1, 1, fill=False))
+                
+        # Color terminal states
+        for term_state in self.terminal_states:
+            x, y = map(int, term_state.split('_'))
+            if classroom[(classroom['state_x']==x) & (classroom['state_y']==y)]['reward'].iloc[0] > 0:
+                color = 'green'  # positive reward
+            else:
+                color = 'red'  # negative reward
+            ax.add_patch(plt.Rectangle((x, y), 1, 1, color=color, alpha=0.5))
+        
+        # Highlight current state
+        curr_x, curr_y = map(int, state.split('_'))
+        ax.add_patch(plt.Rectangle((curr_x, curr_y), 1, 1, color='blue', alpha=0.5))
+        
+        # Add probability text to cells
+        for _, row in classroom.iterrows():
+            current_state = '['+str(row["state_x"])+','+str(row['state_y'])+']'
+            if (row['reward'] != 'na'):
+                if row['reward'] == 0:
+                    if state == str(row['state_x'])+'_'+str(row['state_y']):
+                        ax.text(row['state_x'] + 0.5, row['state_y'] + 0.5, 
+                            f'{current_state}', ha='center', va='center',
+                            fontsize=30)
+                    else:
+                        ax.text(row['state_x'] + 0.5, row['state_y'] + 0.5, 
+                            f'{current_state}', ha='center', va='center',
+                            fontsize=16)
+                else:
+                    ax.text(row['state_x'] + 0.5, row['state_y'] + 0.5, 
+                        f'r={row["reward"]}', ha='center', va='center',
+                        fontsize=30)
+        
+        # Set grid properties
+        ax.set_xlim(self.x_range[0], self.x_range[1])
+        ax.set_ylim(self.y_range[0], self.y_range[1])
+        ax.grid(True)
+        plt.show()
     
     def close(self):
         """Close/Exit the environment."""
