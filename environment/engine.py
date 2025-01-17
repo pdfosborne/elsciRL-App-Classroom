@@ -251,6 +251,8 @@ class Engine:
         ax.set_ylim(self.y_range[0], self.y_range[1])
         ax.grid(True)
         plt.show()
+
+        return fig
     
     def close(self):
         """Close/Exit the environment."""
