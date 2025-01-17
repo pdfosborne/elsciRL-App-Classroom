@@ -56,7 +56,6 @@ class LanguageAdapter:
 
 
         # Covert numeric dict to a list of strings describing player positions
-        state:List[str] = []
         if stud_type == 'trash':
             full_str = 'This is a trash can.'
         elif stud_type == 'recycling':
@@ -69,7 +68,7 @@ class LanguageAdapter:
             full_str = ('The ' + stud_gender + ' student that has ' + stud_hair_style + ' ' + stud_hair_colour + ' hair and is wearing a ' + 
                         stud_upperclothing_colour + ' ' + stud_upperclothing_type + ', ' + stud_lowerclothing_colour + ' ' + stud_lowerclothing_type + 
                         ' and has ' + stud_piercings + ' piercings.')
-        state.append(full_str) 
+        state=full_str
         # Encode to Tensor for agents
         if encode:
             state_encoded = self.encoder.encode(state=state)
@@ -79,9 +78,9 @@ class LanguageAdapter:
         if (indexed):
             state_indexed = list()
             for sent in state:
-                if (sent not in ClassroomALanguage._cached_state_idx):
-                    ClassroomALanguage._cached_state_idx[sent] = len(ClassroomALanguage._cached_state_idx)
-                state_indexed.append(ClassroomALanguage._cached_state_idx[sent])
+                if (sent not in LanguageAdapter._cached_state_idx):
+                    LanguageAdapter._cached_state_idx[sent] = len(LanguageAdapter._cached_state_idx)
+                state_indexed.append(LanguageAdapter._cached_state_idx[sent])
 
             state_encoded = torch.tensor(state_indexed)
 
