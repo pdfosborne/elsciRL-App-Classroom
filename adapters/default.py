@@ -30,7 +30,10 @@ class DefaultAdapter:
         
         # Encode to Tensor for agents
         if encode:
-            #tate_encoded = self.encoder.encode(state=state)
+            #state_encoded = self.encoder.encode(state=state)
+            print("State:", state)
+            print("\n ----")
+            print(self.local_encoder)
             state_encoded = self.local_encoder[state]
         else:
             state_encoded = state
