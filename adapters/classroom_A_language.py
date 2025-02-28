@@ -1,10 +1,12 @@
 from typing import Dict, List
 import pandas as pd
+import numpy as np
 import torch
 from torch import Tensor
 
 # StateAdapter includes static methods for adapters
 from elsciRL.encoders.sentence_transformer_MiniLM_L6v2 import LanguageEncoder
+from gymnasium.spaces import Box
 
 # Language data 
 #from adapters.language_data.student_features import data as StudentFeatures
@@ -38,6 +40,7 @@ class LanguageAdapter:
                     'lowerclothing_type': 'NA','lowerclothing_colour': 'NA','piercings':'NA','gender':'NA'},
         }
         self.encoder = LanguageEncoder()
+        self.observation_space = Box(low=-1, high=1, shape=(1,384), dtype=np.float32)
     
     def adapter(self, state:str, legal_moves:list = None, episode_action_history:list = None, encode:bool = True, indexed: bool = False) -> Tensor:
         """ Use Language name for every piece name for current board position """

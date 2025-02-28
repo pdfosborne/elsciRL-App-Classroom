@@ -5,7 +5,7 @@ from torch import Tensor
 
 # StateAdapter includes static methods for adapters
 from elsciRL.encoders.poss_state_encoded import StateEncoder
-
+from gymnasium.spaces import Discrete
 
 class DefaultAdapter:
     _cached_state_idx: Dict[str, int] = dict()
@@ -17,7 +17,8 @@ class DefaultAdapter:
         possible_states = [str(x)+'_'+str(y) for x in self.x_range for y in self.y_range]
 
         self.encoder = StateEncoder(possible_states=possible_states)
-    
+        self.observation_space = Discrete(self.x_range[-1]*self.y_range[-1])
+            
     def adapter(self, state:str, legal_moves:list = None, episode_action_history:list = None, encode:bool = True, indexed: bool = False) -> Tensor:
         """ id number for each state as numeric representation """
         
