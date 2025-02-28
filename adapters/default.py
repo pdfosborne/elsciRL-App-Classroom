@@ -12,8 +12,8 @@ class DefaultAdapter:
 
     def __init__(self, setup_info:dict={}) -> None:
         # Creates list of all possible x+y states and indexes them
-        self.x_range = [0,5]
-        self.y_range = [0,5]
+        self.x_range = [0,1,2,3,4,5]
+        self.y_range = [0,1,2,3,4,5]
         possible_states = [str(x)+'_'+str(y) for x in self.x_range for y in self.y_range]
         
         self.encoder = StateEncoder(possible_states=possible_states)
@@ -31,9 +31,6 @@ class DefaultAdapter:
         # Encode to Tensor for agents
         if encode:
             #state_encoded = self.encoder.encode(state=state)
-            print("State:", state)
-            print("\n ----")
-            print(self.local_encoder)
             state_encoded = self.local_encoder[state]
         else:
             state_encoded = state
