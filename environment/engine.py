@@ -106,6 +106,9 @@ class Engine:
         # Add this classroom to Classroom dictionary
         self.Classrooms['Classroom_'+str(self.classroom_id)] = current_classroom 
 
+        # Initialize history
+        self.action_history = []
+        self.obs_history = []
 
     @staticmethod
     def action_outcome(state_x,state_y,action,states_df):
@@ -179,6 +182,14 @@ class Engine:
             action_sub_list.remove(action)
             action = random.choice(action_sub_list)
 
+        # TODO: move this into elsciRL agents
+        if isinstance(action, np.int64):
+            self.action_history.append(action.item())
+        elif isinstance(action, np.ndarray):
+            self.action_history.append(action.item())
+        else:
+            self.action_history.append(action)
+
         # Find movement direction given current state and action that ended up being taken
         current_action_outcome = Engine.action_outcome(state_x, state_y, action, classroom)
         u = current_action_outcome[0]
@@ -190,6 +201,7 @@ class Engine:
         reward = next_state_data['reward'].iloc[0]
         terminated = next_state_data['terminal'].iloc[0]
         next_state = str(next_state_x) + "_" + str(next_state_y)
+        self.obs_history.append(str(next_state_x) + "_" + str(next_state_y))
 
         info = None
 
