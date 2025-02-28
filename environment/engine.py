@@ -63,7 +63,8 @@ class Engine:
             #----------------------------
 
         # Define 'universe' of positions and actions
-        self.legal_actions = ['left', 'right', 'up', 'down']
+        # ['left', 'right', 'up', 'down']
+        self.legal_actions = [0,1,2,3]
         self.Classrooms = {}
         # Initialise complete classroom setup
         self.classroom_init = pd.DataFrame()
@@ -115,16 +116,17 @@ class Engine:
         # Produces x and y directional vectors for the action given the current x,y position
         # If this produces an outcome where there is no state (i.e. an empty slot) then the position won't change
         # Define basic action outcomes
-        if action == 'left':
+        # ['left', 'right', 'up', 'down']
+        if action == 0:
             u = -1
             v = 0
-        elif action == 'right':
+        elif action == 1:
             u = 1
             v = 0
-        elif action == 'up':
+        elif action == 2:
             u = 0
             v = 1
-        elif action == 'down':
+        elif action == 3:
             u = 0
             v = -1
         else:
