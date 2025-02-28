@@ -71,10 +71,10 @@ class LanguageAdapter:
             full_str = ('The ' + stud_gender + ' student that has ' + stud_hair_style + ' ' + stud_hair_colour + ' hair and is wearing a ' + 
                         stud_upperclothing_colour + ' ' + stud_upperclothing_type + ', ' + stud_lowerclothing_colour + ' ' + stud_lowerclothing_type + 
                         ' and has ' + stud_piercings + ' piercings.')
-        state=full_str
+
         # Encode to Tensor for agents
         if encode:
-            state_encoded = self.encoder.encode(state=state)
+            state_encoded = self.encoder.encode(state=full_str)
         else:
             state_encoded = state
 
