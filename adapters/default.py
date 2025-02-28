@@ -25,8 +25,6 @@ class DefaultAdapter:
         # Encode to Tensor for agents
         if encode:
             state_encoded = self.encoder.encode(state=state)
-            print("\n")
-            print(state_encoded)
         else:
             state_encoded = state
 
