@@ -15,16 +15,23 @@ class DefaultAdapter:
         self.x_range = [0,5]
         self.y_range = [0,5]
         possible_states = [str(x)+'_'+str(y) for x in self.x_range for y in self.y_range]
-
+        
         self.encoder = StateEncoder(possible_states=possible_states)
-        self.observation_space = Discrete(self.x_range[-1]*self.y_range[-1])
+        # elsciRL StateEncoder returns a binary list
+        # - Try instead just an index id lookup dict
+        self.local_encoder = {}
+        for i, state in enumerate(possible_states):
+            self.local_encoder[state] = i
+
+        self.observation_space = Discrete(len(possible_states))
             
     def adapter(self, state:str, legal_moves:list = None, episode_action_history:list = None, encode:bool = True, indexed: bool = False) -> Tensor:
         """ id number for each state as numeric representation """
         
         # Encode to Tensor for agents
         if encode:
-            state_encoded = self.encoder.encode(state=state)
+            #tate_encoded = self.encoder.encode(state=state)
+            state_encoded = self.local_encoder[state]
         else:
             state_encoded = state
 
