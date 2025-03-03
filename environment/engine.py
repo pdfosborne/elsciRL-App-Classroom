@@ -163,6 +163,7 @@ class Engine:
         # Start episode position
         env_reset_obs = random.choice(self.start_state_list)
         start_obs = str(env_reset_obs[0]) + "_" + str(env_reset_obs[1])
+        self.obs_history.append(start_obs)
         return start_obs 
 
     
@@ -216,7 +217,7 @@ class Engine:
     def render(self, state:any=None):
         """Render the environment as a gridworld."""
         if state is None:
-            return None
+            state = self.obs_history[-1]
             
         # Create figure and axis
         fig, ax = plt.subplots(figsize=(10, 10))
