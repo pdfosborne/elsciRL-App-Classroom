@@ -161,8 +161,9 @@ class Engine:
 
     def reset(self, start_obs:any=None):
         # Start episode position
-        env_reset_obs = random.choice(self.start_state_list)
-        start_obs = str(env_reset_obs[0]) + "_" + str(env_reset_obs[1])
+        # env_reset_obs = random.choice(self.start_state_list)
+        # start_obs = str(env_reset_obs[0]) + "_" + str(env_reset_obs[1])
+        start_obs = "4_1" # For simplicity, always start at 4_1
         self.obs_history.append(start_obs)
         return start_obs 
 
