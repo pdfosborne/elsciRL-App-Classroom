@@ -11,7 +11,7 @@ from gymnasium.spaces import Box
 # Language data 
 #from adapters.language_data.student_features import data as StudentFeatures
 
-class LanguageAdapter:
+class Adapter:
     _cached_state_idx: Dict[str, int] = dict()
 
     def __init__(self, setup_info:dict={}) -> None:
