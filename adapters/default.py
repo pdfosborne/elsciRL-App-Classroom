@@ -16,7 +16,7 @@ class Adapter:
         self.y_range = [0,1,2,3,4,5]
         possible_states = [str(x)+'_'+str(y) for x in self.x_range for y in self.y_range]
         
-        self.encoder = StateEncoder(possible_states=possible_states)
+        self.encoder = StateEncoder(len(possible_states))
         self.observation_space = Discrete(len(possible_states))
             
     def adapter(self, state:str, legal_moves:list = None, episode_action_history:list = None, encode:bool = True, indexed: bool = False) -> Tensor:
