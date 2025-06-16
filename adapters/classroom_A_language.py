@@ -5,7 +5,7 @@ import torch
 from torch import Tensor
 
 # StateAdapter includes static methods for adapters
-from elsciRL.encoders.sentence_transformer_MiniLM_L6v2 import LanguageEncoder
+from elsciRL.encoders.language_transformers.MiniLM_L6v2 import LanguageEncoder
 from gymnasium.spaces import Box
 
 # Language data 
