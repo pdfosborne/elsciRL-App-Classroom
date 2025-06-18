@@ -1,6 +1,6 @@
 {   
-    "name": "Sailing",
-    "problem_type": "Sailing",
+    "name": "Classroom",
+    "problem_type": "GridWorld",
     
     "experience_sample_batch_ratio": 0,
      
