@@ -14,7 +14,7 @@ class Adapter:
 
         self.LLM_adapter = OllamaAdapter(
             model_name=setup_info.get('model_name', 'llama3.2'),
-            base_prompt=setup_info.get('system_prompt', 'You are playing a game of Chess.'),
+            base_prompt=setup_info.get('system_prompt', 'You are moving a piece of paper through a classroom of students who are sitting at their desks in a grid layout.'),
             context_length=2000,
             action_history_length=setup_info.get('action_history_length', 5),
             encoder=setup_info.get('encoder', 'MiniLM_L6v2')
