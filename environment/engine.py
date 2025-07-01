@@ -34,6 +34,8 @@ class Engine:
             # Limited to discrete actions for now, set to arbitrary large number if uncertain
             'action_space_size':4, 
         }
+        # DQN Compatibility need to specify action space size
+        self.output_size = 4
         self.ledger = ledger_required | ledger_optional | ledger_gym_compatibility
         # --------------------------
         self.classroom_id = local_setup_info['classroom_id']
