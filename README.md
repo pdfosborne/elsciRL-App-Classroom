@@ -25,10 +25,10 @@ The agent suggests which direction the student should pass the paper. However, t
 
 ### Real-World Safety Concerns
 
-This is a educational and completely artificial problem but was introduced to highlight the challenges of introducing automation with reinforcement learning in real-world problems. 
+This is a educational and completely artificial problem that was introduced to highlight the challenges of introducing automation with reinforcement learning in real-world problems. 
 
 In this example, the agent's suggestions must not discriminate against students in any way, accidental or otherwise. It must balance acting on observable features without those features being associated with protected characteristics. Therefore, interpretability and human control is required to ensure the automated output of agents are applied safely. 
 
-This issue is particularly important if the agent is provided with images or video of the classroom as a representation of the states. The dataset used in the current example describes students by their clothing choices, hair style/colour, piercings, etc. No protected characteristics were used nor are any of the students representations of real people. 
+The reason we introduced this example was because of the issues when training AI models with images or video feed for the classroom as a representation of the states. The dataset used in the current example describes students by their clothing choices, hair style/colour, piercings, etc. No protected characteristics were used nor are any of the students representations of real people. 
 
 The student images were created by providing the student descriptions to an AI image generation to illustrate the real-world aspect of this problem as well as highlighting the potential issues of implementing such automation.
