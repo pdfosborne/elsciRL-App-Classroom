@@ -32,4 +32,3 @@ In this example, the agent's suggestions must not discriminate against students 
 The reason we introduced this example was because of the issues when training AI models with images or video feed for the classroom as a representation of the states. The dataset used in the current example describes students by their clothing choices, hair style/colour, piercings, etc. No protected characteristics were used nor are any of the students representations of real people. 
 
 The student images were created by providing the student descriptions to an AI image generation to illustrate the real-world aspect of this problem as well as highlighting the potential issues of implementing such automation.
-
